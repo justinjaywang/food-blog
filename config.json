@@ -1,0 +1,8 @@
+{
+  "locals": {
+    "url": "http://localhost:8000",
+    "author": "Justin Wang",
+    "name": "Food Blog",
+    "description": "Justin's food creations and finds."
+  }
+}

@@ -1,0 +1,30 @@
+extends layout
+
+prepend title
+  | Archive of #{ page.title }
+
+append stylesheet
+  | <style type="text/css"> body { background-color: rgba(255, 255, 85, 1); } </style>
+
+block content
+  article.archive
+    a(href='/').page-title= locals.name
+    - var archive = _.chain(contents['posts']._.directories).map(function(item){ return item.index }).compact().sortBy(function(item) {
+    -   return -item.date;
+    - }).groupBy(function(item) {
+    -   return item.date.getFullYear()
+    - }).value()
+    - var years = _.chain(archive).keys().reverse().value()
+    each year in years
+      p.year= year
+      ul
+        - var posts = archive[year]
+        each post in posts
+          - date = post.date.toUTCString()
+          - prettydate = date.substr(8, 4) + date.substr(5, 2)// + ' ' + date.substr(12, 4)
+          li
+            a(href=post.url)
+              span.post-date= prettydate
+              |  &mdash; 
+              span.post-title= post.title
+            

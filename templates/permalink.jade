@@ -1,0 +1,23 @@
+extends layout
+
+prepend title
+  | #{ page.title } &mdash; 
+
+block content
+  article.slide(style='background-image: url(' + page.metadata.image + ')')
+    div.vignette
+    div.inset-border
+    a(href='/').index index
+    p
+      span.dish= page.metadata.dish
+      - if (page.metadata.location!= null)
+        span.at
+        span.restaurant
+          a(href=page.metadata.restauranturl)
+            = page.metadata.restaurant
+            br
+            = page.metadata.location
+      span.date
+        - date = page.metadata.date.toUTCString()
+        - prettydate = date.substr(0, 5) + date.substr(8, 4) + date.substr(5, 2)
+        = prettydate

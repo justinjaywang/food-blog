@@ -1,0 +1,17 @@
+article.slide(style='background-image: url(' + post.metadata.image + ')')
+  div.vignette
+  div.prev
+  div.next
+  p
+    span.dish= post.metadata.dish
+    - if (post.metadata.location!= null)
+      span.at
+      span.restaurant
+        a(href=post.metadata.restauranturl)
+          = post.metadata.restaurant
+          br
+          = post.metadata.location
+    span.date
+      - date = post.metadata.date.toUTCString()
+      - prettydate = date.substr(0, 5) + date.substr(8, 4) + date.substr(5, 2)
+      a(href=post.url)= prettydate
