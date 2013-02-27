@@ -5,7 +5,7 @@ rss(version='2.0',
     xmlns:dc='http://purl.org/dc/elements/1.1/'
     xmlns:atom='http://www.w3.org/2005/Atom')
   channel
-    - var posts = _.chain(contents['posts']._.directories).map(function(item){ return item.index }).sortBy(function(item) {
+    - var posts = _.chain(contents['posts']._.pages).sortBy(function(item) {
     -   return -item.date;
     - }).value()
     title= locals.name
@@ -16,7 +16,9 @@ rss(version='2.0',
     generator Wintersmith
     language en
     for post in posts
-      - var permalink = locals.url + post.url
+      - longurl = post.url
+      - shorturl = longurl.substring(0,longurl.length - 5) // remove .html
+      - var permalink = locals.url + shorturl
       item
         title= post.title
         link= permalink

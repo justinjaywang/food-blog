@@ -1,6 +1,6 @@
 {
   "locals": {
-    "url": "http://localhost:8000",
+    "url": "http://food.justinjaywang.com",
     "author": "Justin Wang",
     "name": "Food Blog",
     "description": "Justin's food creations and finds."

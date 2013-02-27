@@ -7,7 +7,7 @@ block content
       a(href='/').title= locals.name
       span.description Curated by 
         a(href='http://justinjaywang.com') Justin
-  - var posts = _.chain(contents['posts']._.directories).map(function(item){ return item.index }).compact().sortBy(function(item) {
+  - var posts = _.chain(contents['posts']._.pages).sortBy(function(item) {
   -   return -item.date
   - }).value()
   each post in posts

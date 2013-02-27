@@ -9,7 +9,7 @@ append stylesheet
 block content
   article.archive
     a(href='/').page-title= locals.name
-    - var archive = _.chain(contents['posts']._.directories).map(function(item){ return item.index }).compact().sortBy(function(item) {
+    - var archive = _.chain(contents['posts']._.pages).sortBy(function(item) {
     -   return -item.date;
     - }).groupBy(function(item) {
     -   return item.date.getFullYear()
@@ -21,9 +21,11 @@ block content
         - var posts = archive[year]
         each post in posts
           - date = post.date.toUTCString()
-          - prettydate = date.substr(8, 4) + date.substr(5, 2)// + ' ' + date.substr(12, 4)
+          - prettydate = date.substr(8, 4) + date.substr(5, 2)
           li
-            a(href=post.url)
+            - longurl = post.url
+            - shorturl = longurl.substring(0,longurl.length - 5) + '/' // remove .html
+            a(href=shorturl)
               span.post-date= prettydate
               |  &mdash; 
               span.post-title= post.title

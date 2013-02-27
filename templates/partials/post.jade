@@ -12,6 +12,8 @@ article.slide(style='background-image: url(' + post.metadata.image + ')')
           br
           = post.metadata.location
     span.date
+      - longurl = post.url
+      - shorturl = longurl.substring(0,longurl.length - 5) + '/' // remove .html
       - date = post.metadata.date.toUTCString()
       - prettydate = date.substr(0, 5) + date.substr(8, 4) + date.substr(5, 2)
-      a(href=post.url)= prettydate
+      a(href=shorturl)= prettydate
